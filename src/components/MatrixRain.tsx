@@ -32,18 +32,19 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
     const getIntensitySettings = () => {
       switch (intensity) {
         case "high":
-          return { speed: 50, opacity: 0.8, color: "#ff0040" };
+          return { speed: 80, opacity: 0.6, color: "#ff6b6b", fadeAmount: 0.05 };
         case "medium":
-          return { speed: 80, opacity: 0.6, color: "#ffff00" };
+          return { speed: 100, opacity: 0.5, color: "#ffd93d", fadeAmount: 0.04 };
         default:
-          return { speed: 120, opacity: 0.4, color: "#00ff41" };
+          return { speed: 140, opacity: 0.4, color: "#6bcf7f", fadeAmount: 0.03 };
       }
     };
 
     const draw = () => {
       const settings = getIntensitySettings();
       
-      ctx.fillStyle = `rgba(0, 0, 0, ${1 - settings.opacity * 0.3})`;
+      // Use gentle fade instead of harsh clearing
+      ctx.fillStyle = `rgba(0, 0, 0, ${settings.fadeAmount})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = settings.color;
@@ -54,13 +55,19 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
+        // Add subtle brightness variation instead of harsh flashing
+        const brightness = 0.3 + Math.sin(Date.now() * 0.001 + i) * 0.1;
+        ctx.globalAlpha = Math.max(0.2, brightness);
+        
         ctx.fillText(text, x, y);
 
-        if (y > canvas.height && Math.random() > 0.975) {
+        if (y > canvas.height && Math.random() > 0.985) {
           drops[i] = 0;
         }
         drops[i]++;
       }
+      
+      ctx.globalAlpha = 1;
     };
 
     const settings = getIntensitySettings();
@@ -75,7 +82,7 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-30"
+      className="absolute inset-0 pointer-events-none opacity-20"
     />
   );
 };

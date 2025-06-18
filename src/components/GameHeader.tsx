@@ -20,15 +20,22 @@ export const GameHeader = ({ gameState }: GameHeaderProps) => {
     }
   };
 
+  const getTitleClass = () => {
+    switch (gameState) {
+      case "corrupted": 
+        return "text-red-400 transform transition-all duration-1000";
+      case "glitching": 
+        return "text-green-400 opacity-90 transform transition-all duration-500";
+      default: 
+        return "text-green-400 transform transition-all duration-300";
+    }
+  };
+
   return (
     <header className="p-6 border-b border-green-400/20">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <h1 className={`text-2xl font-mono font-bold transition-all duration-300 ${
-            gameState === "glitching" ? "animate-pulse" : ""
-          } ${
-            gameState === "corrupted" ? "text-red-400" : "text-green-400"
-          }`}>
+          <h1 className={`text-2xl font-mono font-bold ${getTitleClass()}`}>
             COURIER.EXE
           </h1>
           <p className="text-sm text-green-300/70 font-mono">
@@ -37,7 +44,7 @@ export const GameHeader = ({ gameState }: GameHeaderProps) => {
         </div>
         
         <div className="text-right">
-          <div className={`text-sm font-mono ${getStatusColor()}`}>
+          <div className={`text-sm font-mono transition-colors duration-1000 ${getStatusColor()}`}>
             {getStatusText()}
           </div>
           <div className="text-xs text-green-300/50 font-mono mt-1">

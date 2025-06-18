@@ -37,11 +37,19 @@ const Index = () => {
     setCurrentDelivery(null);
   };
 
+  const getBackgroundClass = () => {
+    switch (gameState) {
+      case "corrupted":
+        return "bg-gradient-to-br from-red-950 via-gray-900 to-black";
+      case "glitching":
+        return "bg-gradient-to-br from-gray-900 via-gray-800 to-black";
+      default:
+        return "bg-gradient-to-br from-gray-900 via-black to-gray-800";
+    }
+  };
+
   return (
-    <div className={`min-h-screen relative overflow-hidden transition-all duration-1000 ${
-      gameState === "corrupted" ? "bg-red-950" : 
-      gameState === "glitching" ? "bg-gray-900" : "bg-black"
-    }`}>
+    <div className={`min-h-screen relative overflow-hidden transition-all duration-2000 ease-in-out ${getBackgroundClass()}`}>
       <MatrixRain intensity={gameState === "corrupted" ? "high" : gameState === "glitching" ? "medium" : "low"} />
       
       <div className="relative z-10 min-h-screen flex flex-col">
