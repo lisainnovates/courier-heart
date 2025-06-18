@@ -76,7 +76,7 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
         <Button 
           onClick={generateNewDeliveries}
           disabled={isGenerating}
-          className="bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-400/30"
+          className="bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-400/30 transition-colors duration-300"
         >
           {isGenerating ? "SCANNING..." : "REFRESH REQUESTS"}
         </Button>
@@ -86,7 +86,7 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
         {availableDeliveries.map((delivery) => (
           <Card 
             key={delivery.id} 
-            className={`bg-black/50 border transition-all duration-300 hover:bg-black/70 ${
+            className={`bg-black/50 border transition-colors duration-300 hover:bg-black/70 ${
               delivery.corrupted 
                 ? "border-red-400/30 hover:border-red-400/50" 
                 : "border-green-400/30 hover:border-green-400/50"
@@ -118,7 +118,7 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
                 <Button
                   onClick={() => onStartDelivery(delivery)}
                   size="sm"
-                  className={`font-mono text-xs ${
+                  className={`font-mono text-xs transition-colors duration-300 ${
                     delivery.corrupted
                       ? "bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-400/30"
                       : "bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-400/30"
