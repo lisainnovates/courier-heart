@@ -55,12 +55,12 @@ const Index = () => {
       <div className="relative z-10 min-h-screen flex flex-col">
         <GameHeader gameState={gameState} />
         
-        <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6">
-          <div className="flex-1">
+        <div className="flex-1 flex flex-col xl:flex-row gap-8 p-8 max-w-7xl mx-auto w-full">
+          <div className="flex-1 min-w-0">
             <DeliverySystem onStartDelivery={startDelivery} gameState={gameState} />
           </div>
           
-          <div className="lg:w-80">
+          <div className="xl:w-96 shrink-0">
             <CityStatus 
               hearts={cityHearts} 
               totalHearts={totalHearts} 
