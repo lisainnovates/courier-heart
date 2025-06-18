@@ -53,7 +53,7 @@ export const GameHeader = ({ gameState }: GameHeaderProps) => {
             COURIER.EXE
           </h1>
           <p className={`text-base uppercase ${getSubtitleClass()}`}>
-            MYSTIC COURIER • DREAM DELIVERY SERVICE
+            COURIER HEART • DREAM DELIVERY SERVICE
           </p>
         </div>
         
