@@ -84,19 +84,19 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
     if (puzzle.userInput.length > index) {
       return puzzle.userInput[index] === symbol ? "text-warm-teal" : "text-warm-coral";
     }
-    return delivery.corrupted ? "text-warm-coral/50" : "text-warm-teal/50";
+    return delivery.corrupted ? "text-warm-coral/70" : "text-warm-teal/70";
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
       <Card className={`w-full max-w-2xl border ${
         delivery.corrupted 
-          ? "bg-creamy-white/5 backdrop-blur-sm border-warm-coral/30" 
-          : "bg-creamy-white/10 backdrop-blur-sm border-soft-lavender/30"
+          ? "bg-black/40 backdrop-blur-sm border-warm-coral/50" 
+          : "bg-black/40 backdrop-blur-sm border-soft-lavender/50"
       }`}>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className={`font-mono text-lg ${
+            <CardTitle className={`font-mono text-lg font-bold ${
               delivery.corrupted ? "text-warm-coral" : "text-warm-teal"
             }`}>
               {delivery.corrupted ? "CORRUPTION DETECTED" : "DREAM ENCODING"}
@@ -105,15 +105,15 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
               onClick={onClose}
               size="sm"
               variant="ghost"
-              className="text-warm-teal hover:text-warm-teal/80"
+              className="text-creamy-white hover:text-warm-teal hover:bg-warm-teal/20"
             >
               <X size={16} />
             </Button>
           </div>
-          <p className="text-creamy-white/90 font-serif italic">
+          <p className="text-creamy-white font-serif italic text-base">
             "{delivery.title}"
           </p>
-          <p className="text-xs text-creamy-white/70 font-mono">
+          <p className="text-xs text-creamy-white/80 font-mono">
             RECIPIENT: {delivery.recipient}
           </p>
         </CardHeader>
@@ -123,8 +123,8 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
             <div className="text-center space-y-4">
               <CheckCircle size={48} className="text-warm-teal mx-auto" />
               <div className="space-y-2">
-                <h3 className="text-warm-teal font-mono text-lg">DELIVERY COMPLETE</h3>
-                <p className="text-creamy-white/80 text-sm">
+                <h3 className="text-warm-teal font-mono text-lg font-bold">DELIVERY COMPLETE</h3>
+                <p className="text-creamy-white text-sm">
                   The dream has been successfully encoded and delivered. 
                   Another heart beats stronger in the city.
                 </p>
@@ -134,12 +134,12 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
             <>
               <div className="space-y-4">
                 <div className="text-center">
-                  <h3 className={`font-mono text-sm mb-2 ${
+                  <h3 className={`font-mono text-sm mb-2 font-bold ${
                     delivery.corrupted ? "text-warm-coral" : "text-warm-teal"
                   }`}>
                     {delivery.corrupted ? "REPAIR SEQUENCE" : "MATCH THE PATTERN"}
                   </h3>
-                  <p className="text-xs text-creamy-white/70">
+                  <p className="text-xs text-creamy-white/80">
                     {delivery.corrupted 
                       ? "Fix the corrupted data by matching the clean sequence"
                       : "Encode the dream by replicating the magical pattern"
@@ -148,7 +148,7 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
                 </div>
 
                 {/* Pattern Display */}
-                <div className="bg-black/30 p-4 rounded border border-soft-lavender/20">
+                <div className="bg-black/40 p-4 rounded border border-soft-lavender/30">
                   <div className="flex justify-center gap-2 mb-4">
                     {puzzle.sequence.map((symbol, i) => (
                       <span
@@ -167,9 +167,9 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
                         className={`w-8 h-8 border-2 border-dashed flex items-center justify-center ${
                           puzzle.userInput[i] 
                             ? puzzle.userInput[i] === puzzle.sequence[i]
-                              ? "border-warm-teal text-warm-teal"
-                              : "border-warm-coral text-warm-coral"
-                            : "border-soft-lavender/30"
+                              ? "border-warm-teal text-warm-teal bg-warm-teal/10"
+                              : "border-warm-coral text-warm-coral bg-warm-coral/10"
+                            : "border-soft-lavender/50"
                         }`}
                       >
                         {puzzle.userInput[i] && (
@@ -191,8 +191,8 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
                       onClick={() => addToSequence(symbol)}
                       className={`aspect-square text-xl font-mono ${
                         delivery.corrupted
-                          ? "bg-warm-coral/20 hover:bg-warm-coral/30 text-warm-coral border border-warm-coral/30"
-                          : "bg-warm-teal/20 hover:bg-warm-teal/30 text-warm-teal border border-warm-teal/30"
+                          ? "bg-warm-coral/30 hover:bg-warm-coral/40 text-creamy-white border border-warm-coral/50"
+                          : "bg-warm-teal/30 hover:bg-warm-teal/40 text-creamy-white border border-warm-teal/50"
                       }`}
                       disabled={puzzle.complete}
                     >
@@ -206,7 +206,7 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
                     onClick={resetPuzzle}
                     variant="outline"
                     size="sm"
-                    className="text-soft-lavender/70 border-soft-lavender/20 hover:bg-soft-lavender/5 hover:text-soft-lavender/90 bg-transparent"
+                    className="text-creamy-white/80 border-soft-lavender/50 hover:bg-soft-lavender/20 hover:text-creamy-white bg-transparent"
                   >
                     RESET
                   </Button>

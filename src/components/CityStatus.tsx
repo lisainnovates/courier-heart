@@ -25,9 +25,9 @@ export const CityStatus = ({ hearts, totalHearts, gameState }: CityStatusProps) 
   const StatusIcon = status.icon;
 
   return (
-    <Card className="bg-creamy-white/10 backdrop-blur-sm border-soft-lavender/30 h-fit">
+    <Card className="bg-black/20 backdrop-blur-sm border-soft-lavender/50 h-fit">
       <CardHeader>
-        <CardTitle className="text-warm-teal font-mono text-sm flex items-center gap-2">
+        <CardTitle className="text-creamy-white font-mono text-sm flex items-center gap-2 font-bold">
           <StatusIcon size={16} className={status.color} />
           CITY STATUS
         </CardTitle>
@@ -35,13 +35,13 @@ export const CityStatus = ({ hearts, totalHearts, gameState }: CityStatusProps) 
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-creamy-white/80 font-mono">HEARTS RESTORED</span>
-            <span className="text-warm-teal font-mono">{hearts}/{totalHearts}</span>
+            <span className="text-creamy-white font-mono">HEARTS RESTORED</span>
+            <span className="text-warm-teal font-mono font-bold">{hearts}/{totalHearts}</span>
           </div>
           
-          <div className="w-full bg-black/30 rounded-full h-2">
+          <div className="w-full bg-black/40 rounded-full h-3 border border-soft-lavender/30">
             <div 
-              className={`h-2 rounded-full transition-all duration-500 ${
+              className={`h-full rounded-full transition-all duration-500 ${
                 gameState === "corrupted" ? "bg-warm-coral" :
                 gameState === "glitching" ? "bg-soft-lavender" : "bg-warm-teal"
               }`}
@@ -58,36 +58,36 @@ export const CityStatus = ({ hearts, totalHearts, gameState }: CityStatusProps) 
               className={`mx-auto transition-all duration-300 ${
                 i < hearts
                   ? gameState === "corrupted" 
-                    ? "text-warm-coral fill-warm-coral/30"
+                    ? "text-warm-coral fill-warm-coral/50"
                     : gameState === "glitching"
-                    ? "text-soft-lavender fill-soft-lavender/30"
-                    : "text-warm-teal fill-warm-teal/30"
-                  : "text-gray-600"
+                    ? "text-soft-lavender fill-soft-lavender/50"
+                    : "text-warm-teal fill-warm-teal/50"
+                  : "text-gray-500"
               }`}
             />
           ))}
         </div>
 
-        <div className="border-t border-soft-lavender/30 pt-4">
-          <p className="text-xs text-creamy-white/70 leading-relaxed italic">
+        <div className="border-t border-soft-lavender/50 pt-4">
+          <p className="text-xs text-creamy-white/90 leading-relaxed italic">
             {status.text}
           </p>
         </div>
 
         <div className="space-y-2 text-xs font-mono">
           <div className="flex justify-between">
-            <span className="text-creamy-white/60">MEMORY USAGE</span>
-            <span className={`${
+            <span className="text-creamy-white/80">MEMORY USAGE</span>
+            <span className={`font-bold ${
               gameState === "corrupted" ? "text-warm-coral" : "text-warm-teal"
             }`}>{85 - hearts * 3}%</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-creamy-white/60">DREAM BANDWIDTH</span>
-            <span className="text-warm-teal">{hearts * 12}kb/s</span>
+            <span className="text-creamy-white/80">DREAM BANDWIDTH</span>
+            <span className="text-warm-teal font-bold">{hearts * 12}kb/s</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-creamy-white/60">HOPE LEVELS</span>
-            <span className={`${status.color}`}>{Math.round((hearts / totalHearts) * 100)}%</span>
+            <span className="text-creamy-white/80">HOPE LEVELS</span>
+            <span className={`font-bold ${status.color}`}>{Math.round((hearts / totalHearts) * 100)}%</span>
           </div>
         </div>
       </CardContent>

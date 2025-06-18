@@ -19,13 +19,15 @@ interface DeliverySystemProps {
 
 const deliveryTemplates = [
   { title: "A memory of spring rain", description: "Warm droplets on fresh leaves, the scent of renewal", recipient: "The Forgotten Garden" },
-  { title: "A lost lullaby", description: "Mother's voice, soft and eternal, wrapped in starlight", recipient: "Child in Sector 7" },
-  { title: "The taste of grandmother's cookies", description: "Love baked into every crumb, sweetness that transcends time", recipient: "Empty Kitchen Unit" },
+  { title: "A lost melody", description: "Ancient song that once filled empty halls with hope", recipient: "The Silent Observatory" },
+  { title: "The taste of warm bread", description: "Comfort baked into every crumb, sweetness that transcends time", recipient: "Empty Kitchen Unit" },
   { title: "First snow's silence", description: "The hush that falls when winter first kisses the earth", recipient: "The Waiting Room" },
   { title: "Ocean waves at midnight", description: "Endless rhythm, ancient songs of salt and moon", recipient: "Desert Simulation" },
   { title: "A cat's contented purr", description: "Vibrations of pure peace, trust made audible", recipient: "Lonely Apartment 404" },
   { title: "Dancing shadows at sunset", description: "Light and darkness waltzing on cobblestone", recipient: "The Empty Plaza" },
-  { title: "The smell of old books", description: "Wisdom and adventure captured in yellowed pages", recipient: "Digital Library Core" }
+  { title: "The smell of old books", description: "Wisdom and adventure captured in yellowed pages", recipient: "Digital Library Core" },
+  { title: "Starlight through window panes", description: "Gentle beams of distant suns illuminating quiet corners", recipient: "The Abandoned Tower" },
+  { title: "The sound of rain on leaves", description: "Nature's symphony playing for no audience but the wind", recipient: "Synthetic Forest" }
 ];
 
 export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemProps) => {
@@ -72,11 +74,11 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-mono text-warm-teal">DELIVERY REQUESTS</h2>
+        <h2 className="text-xl font-mono text-creamy-white font-bold">DELIVERY REQUESTS</h2>
         <Button 
           onClick={generateNewDeliveries}
           disabled={isGenerating}
-          className="bg-warm-teal/20 hover:bg-warm-teal/30 text-warm-teal border border-warm-teal/30 transition-colors duration-300"
+          className="bg-warm-teal/30 hover:bg-warm-teal/40 text-creamy-white border border-warm-teal/50 transition-colors duration-300 font-mono"
         >
           {isGenerating ? "SCANNING..." : "REFRESH REQUESTS"}
         </Button>
@@ -86,42 +88,42 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
         {availableDeliveries.map((delivery) => (
           <Card 
             key={delivery.id} 
-            className={`bg-creamy-white/5 backdrop-blur-sm border transition-colors duration-300 hover:bg-creamy-white/10 ${
+            className={`bg-black/20 backdrop-blur-sm border transition-colors duration-300 hover:bg-black/30 ${
               delivery.corrupted 
-                ? "border-warm-coral/30 hover:border-warm-coral/50" 
-                : "border-soft-lavender/30 hover:border-soft-lavender/50"
+                ? "border-warm-coral/50 hover:border-warm-coral/70" 
+                : "border-soft-lavender/50 hover:border-soft-lavender/70"
             }`}
           >
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className={`font-mono text-sm ${
+                <CardTitle className={`font-mono text-sm font-bold ${
                   delivery.corrupted ? "text-warm-coral" : "text-warm-teal"
                 }`}>
                   {delivery.corrupted ? "⚠ CORRUPTED DATA ⚠" : "✓ VERIFIED REQUEST"}
                 </CardTitle>
-                <span className={`text-xs font-mono ${getDifficultyColor(delivery.difficulty)}`}>
+                <span className={`text-xs font-mono font-bold ${getDifficultyColor(delivery.difficulty)}`}>
                   {delivery.difficulty.toUpperCase()}
                 </span>
               </div>
-              <CardDescription className="text-creamy-white/90 font-serif italic">
+              <CardDescription className="text-creamy-white font-serif italic text-base">
                 "{delivery.title}"
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-creamy-white/80 text-sm mb-3 leading-relaxed">
+              <p className="text-creamy-white/90 text-sm mb-3 leading-relaxed">
                 {delivery.description}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-creamy-white/70 font-mono">
+                <span className="text-xs text-creamy-white/80 font-mono">
                   RECIPIENT: {delivery.recipient}
                 </span>
                 <Button
                   onClick={() => onStartDelivery(delivery)}
                   size="sm"
-                  className={`font-mono text-xs transition-colors duration-300 ${
+                  className={`font-mono text-xs transition-colors duration-300 font-bold ${
                     delivery.corrupted
-                      ? "bg-warm-coral/20 hover:bg-warm-coral/30 text-warm-coral border border-warm-coral/30"
-                      : "bg-warm-teal/20 hover:bg-warm-teal/30 text-warm-teal border border-warm-teal/30"
+                      ? "bg-warm-coral/30 hover:bg-warm-coral/40 text-creamy-white border border-warm-coral/50"
+                      : "bg-warm-teal/30 hover:bg-warm-teal/40 text-creamy-white border border-warm-teal/50"
                   }`}
                 >
                   ACCEPT DELIVERY
