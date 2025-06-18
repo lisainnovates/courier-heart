@@ -6,12 +6,14 @@ import { CityStatus } from "../components/CityStatus";
 import { PuzzleModal } from "../components/PuzzleModal";
 import { GameHeader } from "../components/GameHeader";
 
+type GameState = "stable" | "glitching" | "corrupted";
+
 const Index = () => {
   const [cityHearts, setCityHearts] = useState(3);
   const [totalHearts, setTotalHearts] = useState(12);
   const [currentDelivery, setCurrentDelivery] = useState(null);
   const [showPuzzle, setShowPuzzle] = useState(false);
-  const [gameState, setGameState] = useState("stable"); // stable, corrupted, glitching
+  const [gameState, setGameState] = useState<GameState>("stable");
 
   useEffect(() => {
     // Determine game state based on city hearts
