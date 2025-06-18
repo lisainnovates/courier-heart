@@ -1,5 +1,5 @@
 
-export type PuzzleType = "pattern" | "memory" | "matching" | "logic";
+export type PuzzleType = "pattern" | "memory" | "matching";
 
 export interface BasePuzzle {
   type: PuzzleType;
@@ -27,18 +27,10 @@ export interface MatchingPuzzle extends BasePuzzle {
   matchedPairs: string[];
 }
 
-export interface LogicPuzzle extends BasePuzzle {
-  type: "logic";
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  userAnswer: number | null;
-}
-
-export type Puzzle = PatternPuzzle | MemoryPuzzle | MatchingPuzzle | LogicPuzzle;
+export type Puzzle = PatternPuzzle | MemoryPuzzle | MatchingPuzzle;
 
 export const generatePuzzle = (difficulty: "easy" | "medium" | "hard", corrupted: boolean): Puzzle => {
-  const puzzleTypes: PuzzleType[] = ["pattern", "memory", "matching", "logic"];
+  const puzzleTypes: PuzzleType[] = ["pattern", "memory", "matching"];
   const randomType = puzzleTypes[Math.floor(Math.random() * puzzleTypes.length)];
   
   const symbols = corrupted ? 
@@ -83,51 +75,6 @@ export const generatePuzzle = (difficulty: "easy" | "medium" | "hard", corrupted
         pairs: [...pairs, ...pairs].sort(() => Math.random() - 0.5),
         selectedPairs: [],
         matchedPairs: [],
-        complete: false
-      };
-
-    case "logic":
-      const logicQuestions = corrupted ? [
-        {
-          question: "Which symbol represents system corruption?",
-          options: ["✦", "⚠", "○", "◇"],
-          correct: 1
-        },
-        {
-          question: "What happens when data fragments collide?",
-          options: ["They merge", "They corrupt", "They disappear", "They multiply"],
-          correct: 1
-        },
-        {
-          question: "Which sequence shows data decay?",
-          options: ["◈→⬢→◇", "✗→⚠→◈", "⬡→◇→✗", "⚠→✗→⬢"],
-          correct: 1
-        }
-      ] : [
-        {
-          question: "Which symbol channels the most dream energy?",
-          options: ["○", "△", "✦", "◇"],
-          correct: 2
-        },
-        {
-          question: "What creates the strongest connection?",
-          options: ["Memory", "Hope", "Love", "All combined"],
-          correct: 3
-        },
-        {
-          question: "Which pattern opens the heart portal?",
-          options: ["△→○→✦", "✦→◆→☆", "○→△→◇", "☆→✦→◆"],
-          correct: 1
-        }
-      ];
-      
-      const question = logicQuestions[Math.floor(Math.random() * logicQuestions.length)];
-      return {
-        type: "logic",
-        question: question.question,
-        options: question.options,
-        correctAnswer: question.correct,
-        userAnswer: null,
         complete: false
       };
 

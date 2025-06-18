@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
@@ -47,7 +46,6 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
       case "pattern": return delivery.corrupted ? "REPAIR SEQUENCE" : "MATCH THE PATTERN";
       case "memory": return delivery.corrupted ? "RESTORE MEMORY" : "REMEMBER THE SEQUENCE";
       case "matching": return delivery.corrupted ? "RECONNECT FRAGMENTS" : "FIND THE PAIRS";
-      case "logic": return delivery.corrupted ? "SOLVE CORRUPTION" : "ANSWER THE RIDDLE";
     }
   };
 
@@ -63,9 +61,6 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
       case "matching": return delivery.corrupted
         ? "Reconnect the fragmented data pairs to restore integrity"
         : "Match the dream symbols to create harmonious connections";
-      case "logic": return delivery.corrupted
-        ? "Answer the system query to bypass corruption"
-        : "Solve the mystical riddle to unlock the dream's essence";
     }
   };
 
@@ -94,7 +89,7 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
               <X size={16} />
             </Button>
           </div>
-          <p className="text-creamy-white font-serif italic text-base">
+          <p className="text-creamy-white font-['Poppins',sans-serif] text-base">
             "{delivery.title}"
           </p>
           <p className="text-xs text-creamy-white/80 font-mono">
@@ -108,7 +103,7 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
               <CheckCircle size={48} className="text-warm-teal mx-auto" />
               <div className="space-y-2">
                 <h3 className="text-warm-teal font-mono text-lg font-bold">DELIVERY COMPLETE</h3>
-                <p className="text-creamy-white text-sm">
+                <p className="text-creamy-white text-sm font-['Poppins',sans-serif]">
                   The dream has been successfully encoded and delivered. 
                   Another heart beats stronger in the city.
                 </p>
@@ -148,15 +143,6 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
 
                 {puzzle.type === "matching" && (
                   <MatchingPuzzleComponent 
-                    puzzle={puzzle} 
-                    setPuzzle={setPuzzle} 
-                    onSuccess={handleSuccess}
-                    corrupted={delivery.corrupted}
-                  />
-                )}
-
-                {puzzle.type === "logic" && (
-                  <LogicPuzzleComponent 
                     puzzle={puzzle} 
                     setPuzzle={setPuzzle} 
                     onSuccess={handleSuccess}
@@ -423,54 +409,6 @@ const MatchingPuzzleComponent = ({ puzzle, setPuzzle, onSuccess, corrupted }) =>
             disabled={puzzle.complete || puzzle.matchedPairs.includes(pair.id)}
           >
             {pair.symbol}
-          </Button>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Logic Puzzle Component
-const LogicPuzzleComponent = ({ puzzle, setPuzzle, onSuccess, corrupted }) => {
-  const selectAnswer = (index: number) => {
-    if (puzzle.complete) return;
-
-    setPuzzle(prev => ({ ...prev, userAnswer: index }));
-    
-    setTimeout(() => {
-      if (index === puzzle.correctAnswer) {
-        onSuccess();
-      } else {
-        setPuzzle(prev => ({ ...prev, userAnswer: null }));
-      }
-    }, 1500);
-  };
-
-  return (
-    <div className="bg-black/40 p-4 rounded border border-soft-lavender/30 space-y-4">
-      <div className="text-center">
-        <p className="text-creamy-white font-mono text-sm mb-4">
-          {puzzle.question}
-        </p>
-      </div>
-      
-      <div className="grid grid-cols-1 gap-2">
-        {puzzle.options.map((option, index) => (
-          <Button
-            key={index}
-            onClick={() => selectAnswer(index)}
-            className={`text-left font-mono text-sm p-3 transition-colors ${
-              puzzle.userAnswer === index
-                ? index === puzzle.correctAnswer
-                  ? "bg-warm-teal/40 text-warm-teal border border-warm-teal"
-                  : "bg-warm-coral/40 text-warm-coral border border-warm-coral"
-                : corrupted
-                ? "bg-warm-coral/20 hover:bg-warm-coral/30 text-creamy-white border border-warm-coral/50"
-                : "bg-warm-teal/20 hover:bg-warm-teal/30 text-creamy-white border border-warm-teal/50"
-            }`}
-            disabled={puzzle.complete || puzzle.userAnswer !== null}
-          >
-            {option}
           </Button>
         ))}
       </div>
