@@ -90,7 +90,7 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
               delivery.corrupted 
                 ? "border-red-400/30 hover:border-red-400/50" 
                 : "border-green-400/30 hover:border-green-400/50"
-            } ${gameState === "glitching" ? "animate-pulse" : ""}`}
+            }`}
           >
             <CardHeader>
               <div className="flex items-center justify-between">
