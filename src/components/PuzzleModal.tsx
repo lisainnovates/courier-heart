@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
@@ -206,7 +205,7 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
                     onClick={resetPuzzle}
                     variant="outline"
                     size="sm"
-                    className="text-green-400 border-green-400/30 hover:bg-green-400/10"
+                    className="text-green-400/70 border-green-400/20 hover:bg-green-400/5 hover:text-green-400/90 bg-transparent"
                   >
                     RESET
                   </Button>
