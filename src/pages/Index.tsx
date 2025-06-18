@@ -40,11 +40,11 @@ const Index = () => {
   const getBackgroundClass = () => {
     switch (gameState) {
       case "corrupted":
-        return "bg-gradient-to-br from-red-950 via-gray-900 to-black";
+        return "bg-cozy-corrupted";
       case "glitching":
-        return "bg-gradient-to-br from-gray-900 via-gray-800 to-black";
+        return "bg-cozy-glitching";
       default:
-        return "bg-gradient-to-br from-gray-900 via-black to-gray-800";
+        return "bg-cozy-stable";
     }
   };
 

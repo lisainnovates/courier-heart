@@ -62,21 +62,21 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "easy": return "text-green-400";
-      case "medium": return "text-yellow-400";
-      case "hard": return "text-red-400";
-      default: return "text-green-400";
+      case "easy": return "text-warm-teal";
+      case "medium": return "text-soft-lavender";
+      case "hard": return "text-warm-coral";
+      default: return "text-warm-teal";
     }
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-mono text-green-400">DELIVERY REQUESTS</h2>
+        <h2 className="text-xl font-mono text-warm-teal">DELIVERY REQUESTS</h2>
         <Button 
           onClick={generateNewDeliveries}
           disabled={isGenerating}
-          className="bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-400/30 transition-colors duration-300"
+          className="bg-warm-teal/20 hover:bg-warm-teal/30 text-warm-teal border border-warm-teal/30 transition-colors duration-300"
         >
           {isGenerating ? "SCANNING..." : "REFRESH REQUESTS"}
         </Button>
@@ -86,16 +86,16 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
         {availableDeliveries.map((delivery) => (
           <Card 
             key={delivery.id} 
-            className={`bg-black/50 border transition-colors duration-300 hover:bg-black/70 ${
+            className={`bg-creamy-white/5 backdrop-blur-sm border transition-colors duration-300 hover:bg-creamy-white/10 ${
               delivery.corrupted 
-                ? "border-red-400/30 hover:border-red-400/50" 
-                : "border-green-400/30 hover:border-green-400/50"
+                ? "border-warm-coral/30 hover:border-warm-coral/50" 
+                : "border-soft-lavender/30 hover:border-soft-lavender/50"
             }`}
           >
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className={`font-mono text-sm ${
-                  delivery.corrupted ? "text-red-400" : "text-green-400"
+                  delivery.corrupted ? "text-warm-coral" : "text-warm-teal"
                 }`}>
                   {delivery.corrupted ? "⚠ CORRUPTED DATA ⚠" : "✓ VERIFIED REQUEST"}
                 </CardTitle>
@@ -103,16 +103,16 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
                   {delivery.difficulty.toUpperCase()}
                 </span>
               </div>
-              <CardDescription className="text-green-300/80 font-serif italic">
+              <CardDescription className="text-creamy-white/90 font-serif italic">
                 "{delivery.title}"
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-green-200/70 text-sm mb-3 leading-relaxed">
+              <p className="text-creamy-white/80 text-sm mb-3 leading-relaxed">
                 {delivery.description}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-green-400/60 font-mono">
+                <span className="text-xs text-creamy-white/70 font-mono">
                   RECIPIENT: {delivery.recipient}
                 </span>
                 <Button
@@ -120,8 +120,8 @@ export const DeliverySystem = ({ onStartDelivery, gameState }: DeliverySystemPro
                   size="sm"
                   className={`font-mono text-xs transition-colors duration-300 ${
                     delivery.corrupted
-                      ? "bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-400/30"
-                      : "bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-400/30"
+                      ? "bg-warm-coral/20 hover:bg-warm-coral/30 text-warm-coral border border-warm-coral/30"
+                      : "bg-warm-teal/20 hover:bg-warm-teal/30 text-warm-teal border border-warm-teal/30"
                   }`}
                 >
                   ACCEPT DELIVERY

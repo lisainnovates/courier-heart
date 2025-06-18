@@ -32,11 +32,11 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
     const getIntensitySettings = () => {
       switch (intensity) {
         case "high":
-          return { speed: 80, opacity: 0.6, color: "#ff6b6b", fadeAmount: 0.05 };
+          return { speed: 80, opacity: 0.6, color: "#FF7F7F", fadeAmount: 0.05 };
         case "medium":
-          return { speed: 100, opacity: 0.5, color: "#ffd93d", fadeAmount: 0.04 };
+          return { speed: 100, opacity: 0.5, color: "#C8A2C8", fadeAmount: 0.04 };
         default:
-          return { speed: 140, opacity: 0.4, color: "#6bcf7f", fadeAmount: 0.03 };
+          return { speed: 140, opacity: 0.4, color: "#5EEAD4", fadeAmount: 0.03 };
       }
     };
 
@@ -82,7 +82,7 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-20"
+      className="absolute inset-0 pointer-events-none opacity-30"
     />
   );
 };

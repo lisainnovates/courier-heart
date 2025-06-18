@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,20 +38,21 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Cozy Digital Witch Palette */
+    --warm-coral: #FF7F7F;
+    --soft-lavender: #C8A2C8;
+    --creamy-off-white: #FFF5E1;
+    --deep-purple: #6B46C1;
+    --warm-teal: #5EEAD4;
+    --soft-gray: #4B5563;
   }
 
   .dark {
@@ -99,5 +101,56 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom cozy digital witch utilities */
+@layer utilities {
+  .bg-cozy-stable {
+    background: linear-gradient(135deg, #6B46C1 0%, #5EEAD4 50%, #C8A2C8 100%);
+  }
+  
+  .bg-cozy-glitching {
+    background: linear-gradient(135deg, #4B5563 0%, #5EEAD4 30%, #C8A2C8 70%, #6B46C1 100%);
+  }
+  
+  .bg-cozy-corrupted {
+    background: linear-gradient(135deg, #7F1D1D 0%, #6B46C1 40%, #C8A2C8 80%, #000000 100%);
+  }
+  
+  .text-warm-coral {
+    color: #FF7F7F;
+  }
+  
+  .text-soft-lavender {
+    color: #C8A2C8;
+  }
+  
+  .text-creamy-white {
+    color: #FFF5E1;
+  }
+  
+  .text-warm-teal {
+    color: #5EEAD4;
+  }
+  
+  .border-warm-coral {
+    border-color: #FF7F7F;
+  }
+  
+  .border-soft-lavender {
+    border-color: #C8A2C8;
+  }
+  
+  .bg-warm-coral {
+    background-color: #FF7F7F;
+  }
+  
+  .bg-soft-lavender {
+    background-color: #C8A2C8;
+  }
+  
+  .bg-creamy-white {
+    background-color: #FFF5E1;
   }
 }
