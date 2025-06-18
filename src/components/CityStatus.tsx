@@ -1,4 +1,3 @@
-
 import { Heart, Zap, Shield, Activity } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
@@ -25,7 +24,7 @@ export const CityStatus = ({ hearts, totalHearts, gameState }: CityStatusProps) 
   const StatusIcon = status.icon;
 
   return (
-    <Card className="bg-black/30 backdrop-blur-md border-soft-lavender/50 h-fit shadow-xl hover:shadow-2xl transition-all duration-300 sticky top-8">
+    <Card className="bg-black/30 backdrop-blur-md border-soft-lavender/50 shadow-xl hover:shadow-2xl transition-all duration-300">
       <CardHeader className="pb-4">
         <CardTitle className="text-creamy-white font-mono text-sm flex items-center gap-3 font-bold tracking-wide">
           <StatusIcon size={18} className={`${status.color} animate-pulse`} />

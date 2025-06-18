@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { MatrixRain } from "../components/MatrixRain";
 import { DeliverySystem } from "../components/DeliverySystem";
@@ -53,20 +52,21 @@ const Index = () => {
       <MatrixRain intensity={gameState === "corrupted" ? "high" : gameState === "glitching" ? "medium" : "low"} />
       
       <div className="relative z-10 min-h-screen flex flex-col">
-        <GameHeader gameState={gameState} />
-        
-        <div className="flex-1 flex flex-col xl:flex-row gap-8 p-8 max-w-7xl mx-auto w-full">
-          <div className="flex-1 min-w-0">
-            <DeliverySystem onStartDelivery={startDelivery} gameState={gameState} />
-          </div>
+        <div className="relative">
+          <GameHeader gameState={gameState} />
           
-          <div className="xl:w-96 shrink-0">
+          {/* City Status positioned in top right */}
+          <div className="absolute top-8 right-8 w-80 z-20">
             <CityStatus 
               hearts={cityHearts} 
               totalHearts={totalHearts} 
               gameState={gameState} 
             />
           </div>
+        </div>
+        
+        <div className="flex-1 p-8 max-w-7xl mx-auto w-full pr-96">
+          <DeliverySystem onStartDelivery={startDelivery} gameState={gameState} />
         </div>
       </div>
 
