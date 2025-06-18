@@ -16,8 +16,11 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
     if (!ctx) return;
 
     const resizeCanvas = () => {
+      // Ensure canvas covers the entire viewport
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      canvas.style.width = '100vw';
+      canvas.style.height = '100vh';
     };
 
     resizeCanvas();
@@ -82,7 +85,8 @@ export const MatrixRain = ({ intensity }: MatrixRainProps) => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-30"
+      className="fixed inset-0 w-screen h-screen pointer-events-none opacity-30 z-0"
+      style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
     />
   );
 };
