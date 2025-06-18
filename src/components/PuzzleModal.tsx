@@ -89,11 +89,11 @@ export const PuzzleModal = ({ delivery, onComplete, onClose, gameState }: Puzzle
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-      <Card className={`w-full max-w-2xl border transition-all duration-300 ${
+      <Card className={`w-full max-w-2xl border ${
         delivery.corrupted 
           ? "bg-red-950/30 border-red-400/30" 
           : "bg-black/80 border-green-400/30"
-      } ${gameState === "glitching" ? "animate-pulse" : ""}`}>
+      }`}>
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className={`font-mono text-lg ${
