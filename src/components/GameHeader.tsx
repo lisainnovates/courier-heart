@@ -23,11 +23,22 @@ export const GameHeader = ({ gameState }: GameHeaderProps) => {
   const getTitleClass = () => {
     switch (gameState) {
       case "corrupted": 
-        return "text-warm-coral transform transition-all duration-1000 animate-pulse";
+        return "text-warm-coral transform transition-all duration-1000 animate-pulse drop-shadow-[0_0_8px_rgba(255,127,127,0.8)] text-shadow-matrix";
       case "glitching": 
-        return "text-soft-lavender opacity-90 transform transition-all duration-500";
+        return "text-soft-lavender opacity-90 transform transition-all duration-500 drop-shadow-[0_0_6px_rgba(200,162,200,0.6)]";
       default: 
-        return "text-warm-teal transform transition-all duration-300";
+        return "text-warm-teal transform transition-all duration-300 drop-shadow-[0_0_4px_rgba(94,234,212,0.4)]";
+    }
+  };
+
+  const getSubtitleClass = () => {
+    switch (gameState) {
+      case "corrupted": 
+        return "text-creamy-white font-mono font-light tracking-[0.2em] drop-shadow-[0_0_4px_rgba(255,245,225,0.6)]";
+      case "glitching": 
+        return "text-creamy-white font-mono font-light tracking-[0.15em] opacity-80";
+      default: 
+        return "text-creamy-white font-mono font-light tracking-[0.1em]";
     }
   };
 
@@ -38,19 +49,19 @@ export const GameHeader = ({ gameState }: GameHeaderProps) => {
       
       <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto">
         <div className="space-y-2">
-          <h1 className={`text-3xl font-mono font-bold tracking-wider ${getTitleClass()}`}>
+          <h1 className={`text-4xl font-mono font-black tracking-[0.3em] uppercase ${getTitleClass()}`}>
             COURIER.EXE
           </h1>
-          <p className="text-base text-creamy-white font-poppins font-light tracking-wide">
-            Mystic Courier • Dream Delivery Service
+          <p className={`text-base uppercase ${getSubtitleClass()}`}>
+            MYSTIC COURIER • DREAM DELIVERY SERVICE
           </p>
         </div>
         
         <div className="text-right space-y-1">
-          <div className={`text-sm font-mono transition-colors duration-1000 font-bold tracking-wide ${getStatusColor()}`}>
+          <div className={`text-sm font-mono transition-colors duration-1000 font-bold tracking-[0.2em] uppercase ${getStatusColor()} drop-shadow-[0_0_3px_currentColor]`}>
             {getStatusText()}
           </div>
-          <div className="text-xs text-creamy-white/70 font-mono tracking-wider">
+          <div className="text-xs text-creamy-white/70 font-mono tracking-[0.15em] uppercase">
             v2.3.7-beta
           </div>
         </div>

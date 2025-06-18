@@ -104,6 +104,17 @@
   }
 }
 
+/* Matrix-style text effects */
+@layer utilities {
+  .text-shadow-matrix {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+}
+
 /* Custom cozy digital witch utilities */
 @layer utilities {
   .bg-cozy-stable {
